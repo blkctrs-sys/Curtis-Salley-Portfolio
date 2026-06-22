@@ -13,4 +13,4 @@ export const firebaseConfig = {
 
 // Paste the UID of your one admin user here (Firebase Console > Authentication > Users).
 // This must match the ADMIN_UID used in your Firestore/Storage security rules.
-export const ADMIN_UID = "wdQNi0qgMpN2mNhWgwskSferoNJ3";
+export const ADMIN_UID = "3ybZPR91P6fubOhkmsYbBdgQvUN2";
