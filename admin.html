@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Admin — Curtis Salley Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  main { max-width: 640px; margin: 3rem auto; padding: 0 1.5rem; }
+  .panel { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 1.75rem; margin-bottom: 2rem; }
+  label { display: block; margin: 1rem 0 0.35rem; font-weight: 600; font-size: 0.9rem; color: var(--text-dim); }
+  input[type="email"], input[type="password"], input[type="text"], select {
+    width: 100%; padding: 0.6rem 0.75rem; background: var(--bg); border: 1px solid var(--border);
+    color: var(--text); border-radius: 6px; font-family: "Poppins", sans-serif;
+  }
+  input[type="file"] { margin-top: 0.35rem; color: var(--text-dim); }
+  button.action {
+    margin-top: 1.25rem; background: var(--orange); color: #0e0e10; border: none;
+    padding: 0.65rem 1.3rem; border-radius: 6px; font-weight: 600; cursor: pointer;
+  }
+  button.action:hover { background: var(--orange-dim); }
+  button.danger { background: transparent; color: #ff5c5c; border: 1px solid #ff5c5c; padding: 0.3rem 0.7rem; font-size: 0.8rem; border-radius: 5px; cursor: pointer; }
+  .status { margin-top: 0.75rem; font-size: 0.88rem; color: var(--text-dim); min-height: 1.2em; }
+  .item-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  #app-panels { display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1 class="site-name">Admin</h1>
+  <nav><a href="index.html" style="color:var(--orange);text-decoration:none;font-weight:600;">&larr; Back to site</a></nav>
+</header>
+
+<main>
+  <div class="panel" id="login-panel">
+    <h2>Log In</h2>
+    <label for="email">Email</label>
+    <input type="email" id="email" autocomplete="username" />
+    <label for="password">Password</label>
+    <input type="password" id="password" autocomplete="current-password" />
+    <button class="action" id="login-btn">Log In</button>
+    <div class="status" id="login-status"></div>
+  </div>
+
+  <div id="app-panels">
+    <div class="panel">
+      <h2>About Me</h2>
+      <label for="bio-text">Bio text</label>
+      <textarea id="bio-text" rows="6" style="width:100%;padding:0.6rem 0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:'Poppins',sans-serif;"></textarea>
+      <label for="bio-photo">Profile photo (replaces current)</label>
+      <input type="file" id="bio-photo" accept="image/*" />
+      <button class="action" id="save-about-btn">Save About Me</button>
+      <div class="status" id="about-status"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Add Work</h2>
+      <label for="media-section">Section</label>
+      <select id="media-section">
+        <option value="unreal">Unreal Engine</option>
+        <option value="blender">Blender</option>
+      </select>
+      <label for="media-file">Image or video file</label>
+      <input type="file" id="media-file" accept="image/*,video/*" />
+      <label for="media-caption">Caption (optional)</label>
+      <input type="text" id="media-caption" />
+      <button class="action" id="upload-media-btn">Upload</button>
+      <div class="status" id="upload-status"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Unreal Engine items</h2>
+      <div id="unreal-list"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Blender items</h2>
+      <div id="blender-list"></div>
+    </div>
+
+    <div class="panel">
+      <button class="action" id="logout-btn" style="background:transparent;color:var(--orange);border:1.5px solid var(--orange);">Log Out</button>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>
