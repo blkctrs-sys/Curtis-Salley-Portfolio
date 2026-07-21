@@ -172,6 +172,17 @@ section h2 {
   color: var(--text-dim);
 }
 
+/* Portrait/vertical media (e.g. Instagram/TikTok-style clips) */
+.gallery--portrait {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
+.gallery--portrait .gallery-item img,
+.gallery--portrait .gallery-item video {
+  height: auto;
+  aspect-ratio: 9 / 16;
+}
+
 .empty-state {
   color: var(--text-dim);
   font-style: italic;
@@ -193,11 +204,28 @@ section h2 {
   display: flex;
 }
 
+#lightbox-content {
+  max-width: 90vw;
+  max-height: 96vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 #lightbox img,
 #lightbox video {
   max-width: 90vw;
-  max-height: 85vh;
+  max-height: 78vh;
   border-radius: 6px;
+}
+
+.lightbox-description {
+  color: var(--text-dim);
+  max-width: 480px;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
 #lightbox .close-btn {

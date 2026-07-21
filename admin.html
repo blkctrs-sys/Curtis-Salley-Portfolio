@@ -62,11 +62,14 @@
       <select id="media-section">
         <option value="unreal">Unreal Engine</option>
         <option value="blender">Blender</option>
+        <option value="music">Music</option>
       </select>
       <label for="media-file">Image or video file</label>
       <input type="file" id="media-file" accept="image/*,video/*" />
       <label for="media-caption">Caption (optional)</label>
       <input type="text" id="media-caption" />
+      <label for="media-description">Description (optional)</label>
+      <textarea id="media-description" rows="3" style="width:100%;padding:0.6rem 0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:'Poppins',sans-serif;"></textarea>
       <button class="action" id="upload-media-btn">Upload</button>
       <div class="status" id="upload-status"></div>
     </div>
@@ -79,6 +82,11 @@
     <div class="panel">
       <h2>Blender items</h2>
       <div id="blender-list"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Music items</h2>
+      <div id="music-list"></div>
     </div>
 
     <div class="panel">

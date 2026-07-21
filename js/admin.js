@@ -51,6 +51,7 @@ onAuthStateChanged(auth, (user) => {
     loadAboutIntoForm();
     refreshList("unreal", "unreal-list");
     refreshList("blender", "blender-list");
+    refreshList("music", "music-list");
   } else {
     if (user) {
       // Logged in, but not the admin account.
@@ -99,6 +100,7 @@ document.getElementById("upload-media-btn").addEventListener("click", async () =
   const section = document.getElementById("media-section").value;
   const file = document.getElementById("media-file").files[0];
   const caption = document.getElementById("media-caption").value.trim();
+  const description = document.getElementById("media-description").value.trim();
 
   if (!file) {
     status.textContent = "Choose a file first.";
@@ -119,12 +121,14 @@ document.getElementById("upload-media-btn").addEventListener("click", async () =
       url,
       storagePath,
       caption,
+      description,
       createdAt: serverTimestamp(),
     });
 
     status.textContent = "Uploaded.";
     document.getElementById("media-file").value = "";
     document.getElementById("media-caption").value = "";
+    document.getElementById("media-description").value = "";
     refreshList(section, `${section}-list`);
   } catch (err) {
     status.textContent = "Error: " + err.message;
@@ -161,7 +165,10 @@ async function refreshList(section, listId) {
     info.style.display = "flex";
     info.style.alignItems = "center";
     info.style.gap = "0.75rem";
-    info.innerHTML = `${thumb}<span>${item.caption || "(no caption)"} — ${item.type}<br><small style="color:var(--text-dim);">${when}</small></span>`;
+    const descLine = item.description
+      ? `<br><small style="color:var(--text-dim);">${item.description}</small>`
+      : "";
+    info.innerHTML = `${thumb}<span>${item.caption || "(no caption)"} — ${item.type}<br><small style="color:var(--text-dim);">${when}</small>${descLine}</span>`;
     if (item.type === "video") {
       primeVideoThumbnail(info.querySelector("video"));
     }

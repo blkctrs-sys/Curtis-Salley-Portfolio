@@ -32,11 +32,13 @@ function closeLightbox() {
   lightboxContent.innerHTML = "";
 }
 
-function openLightbox(type, url) {
-  lightboxContent.innerHTML =
+function openLightbox(type, url, description) {
+  const media =
     type === "video"
       ? `<video src="${url}" controls autoplay></video>`
       : `<img src="${url}" alt="" />`;
+  const desc = description ? `<p class="lightbox-description">${description}</p>` : "";
+  lightboxContent.innerHTML = media + desc;
   lightbox.classList.add("open");
 }
 
@@ -81,10 +83,13 @@ async function loadGallery(section, containerId) {
           : `<img src="${item.url}" alt="${item.caption || ""}" loading="lazy" />`;
 
       card.innerHTML = `${media}<div class="caption">${item.caption || ""}</div>`;
+      if (item.description) {
+        card.title = item.description;
+      }
       if (item.type === "video") {
         primeVideoThumbnail(card.querySelector("video"));
       }
-      card.addEventListener("click", () => openLightbox(item.type, item.url));
+      card.addEventListener("click", () => openLightbox(item.type, item.url, item.description));
       container.appendChild(card);
     });
   } catch (err) {
@@ -96,3 +101,4 @@ async function loadGallery(section, containerId) {
 loadAbout();
 loadGallery("unreal", "unreal-gallery");
 loadGallery("blender", "blender-gallery");
+loadGallery("music", "music-gallery");
