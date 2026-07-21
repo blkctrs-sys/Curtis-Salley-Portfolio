@@ -24,6 +24,7 @@ import {
   getDownloadURL,
   deleteObject,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+import { primeVideoThumbnail } from "./video-thumb.js";
 
 const loginPanel = document.getElementById("login-panel");
 const appPanels = document.getElementById("app-panels");
@@ -149,7 +150,22 @@ async function refreshList(section, listId) {
     const item = docSnap.data();
     const row = document.createElement("div");
     row.className = "item-row";
-    row.innerHTML = `<span>${item.caption || "(no caption)"} — ${item.type}</span>`;
+
+    const when = item.createdAt?.toDate ? item.createdAt.toDate().toLocaleString() : "";
+    const thumb =
+      item.type === "video"
+        ? `<video src="${item.url}" style="width:70px;height:46px;object-fit:cover;background:#000;" muted playsinline preload="metadata"></video>`
+        : `<img src="${item.url}" style="width:70px;height:46px;object-fit:cover;background:#000;" />`;
+
+    const info = document.createElement("span");
+    info.style.display = "flex";
+    info.style.alignItems = "center";
+    info.style.gap = "0.75rem";
+    info.innerHTML = `${thumb}<span>${item.caption || "(no caption)"} — ${item.type}<br><small style="color:var(--text-dim);">${when}</small></span>`;
+    if (item.type === "video") {
+      primeVideoThumbnail(info.querySelector("video"));
+    }
+    row.appendChild(info);
 
     const delBtn = document.createElement("button");
     delBtn.className = "danger";

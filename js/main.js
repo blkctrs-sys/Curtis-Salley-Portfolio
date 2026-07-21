@@ -8,6 +8,7 @@ import {
   orderBy,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { primeVideoThumbnail } from "./video-thumb.js";
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -76,15 +77,19 @@ async function loadGallery(section, containerId) {
 
       const media =
         item.type === "video"
-          ? `<video src="${item.url}" muted></video>`
+          ? `<video src="${item.url}" muted playsinline preload="metadata"></video>`
           : `<img src="${item.url}" alt="${item.caption || ""}" loading="lazy" />`;
 
       card.innerHTML = `${media}<div class="caption">${item.caption || ""}</div>`;
+      if (item.type === "video") {
+        primeVideoThumbnail(card.querySelector("video"));
+      }
       card.addEventListener("click", () => openLightbox(item.type, item.url));
       container.appendChild(card);
     });
   } catch (err) {
     console.error(`Failed to load ${section} gallery:`, err);
+    container.innerHTML = `<p class="empty-state" style="color:#ff5c5c;">Couldn't load this gallery: ${err.message}</p>`;
   }
 }
 

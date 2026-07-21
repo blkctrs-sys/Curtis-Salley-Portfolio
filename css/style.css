@@ -211,6 +211,34 @@ section h2 {
   border: none;
 }
 
+/* Contact */
+#contact {
+  text-align: center;
+}
+
+.contact-text {
+  color: var(--text-dim);
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+}
+
+.contact-email {
+  display: inline-block;
+  border: 1.5px solid var(--orange);
+  color: var(--orange);
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.contact-email:hover {
+  background: var(--orange);
+  color: #0e0e10;
+}
+
 /* Footer */
 footer {
   text-align: center;
