@@ -95,6 +95,41 @@ document.getElementById("save-about-btn").addEventListener("click", async () => 
 
 // --- Gallery uploads ---
 
+// Mobile browsers (notably iOS Safari) refuse to preload any video data, so a
+// <video poster> image is the only reliable way to show a thumbnail there.
+// Capturing it here (from the local file the browser already has in memory)
+// avoids the CORS issues that would come from re-fetching the video later.
+function captureVideoPoster(file) {
+  return new Promise((resolve, reject) => {
+    const video = document.createElement("video");
+    video.preload = "auto";
+    video.muted = true;
+    video.playsInline = true;
+    video.src = URL.createObjectURL(file);
+
+    video.addEventListener("loadeddata", () => {
+      video.currentTime = Math.min(0.1, (video.duration || 0.2) / 2);
+    });
+
+    video.addEventListener("seeked", () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext("2d").drawImage(video, 0, 0);
+      canvas.toBlob(
+        (blob) => {
+          URL.revokeObjectURL(video.src);
+          blob ? resolve(blob) : reject(new Error("Could not capture poster frame"));
+        },
+        "image/jpeg",
+        0.85
+      );
+    });
+
+    video.addEventListener("error", () => reject(new Error("Could not load video for poster capture")));
+  });
+}
+
 document.getElementById("upload-media-btn").addEventListener("click", async () => {
   const status = document.getElementById("upload-status");
   const section = document.getElementById("media-section").value;
@@ -115,6 +150,18 @@ document.getElementById("upload-media-btn").addEventListener("click", async () =
     await uploadBytes(fileRef, file);
     const url = await getDownloadURL(fileRef);
 
+    let posterURL = null;
+    if (type === "video") {
+      try {
+        const posterBlob = await captureVideoPoster(file);
+        const posterRef = ref(storage, `${section}/posters/${Date.now()}_${file.name}.jpg`);
+        await uploadBytes(posterRef, posterBlob);
+        posterURL = await getDownloadURL(posterRef);
+      } catch (err) {
+        console.error("Poster capture failed:", err);
+      }
+    }
+
     await addDoc(collection(db, "gallery"), {
       section,
       type,
@@ -122,6 +169,7 @@ document.getElementById("upload-media-btn").addEventListener("click", async () =
       storagePath,
       caption,
       description,
+      posterURL,
       createdAt: serverTimestamp(),
     });
 
@@ -158,7 +206,7 @@ async function refreshList(section, listId) {
     const when = item.createdAt?.toDate ? item.createdAt.toDate().toLocaleString() : "";
     const thumb =
       item.type === "video"
-        ? `<video src="${item.url}" style="width:70px;height:46px;object-fit:cover;background:#000;" muted playsinline preload="metadata"></video>`
+        ? `<video src="${item.url}" ${item.posterURL ? `poster="${item.posterURL}"` : ""} style="width:70px;height:46px;object-fit:cover;background:#000;" muted playsinline preload="metadata"></video>`
         : `<img src="${item.url}" style="width:70px;height:46px;object-fit:cover;background:#000;" />`;
 
     const info = document.createElement("span");

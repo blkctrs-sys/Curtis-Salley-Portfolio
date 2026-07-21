@@ -19,6 +19,22 @@ document.querySelectorAll("nav button").forEach((btn) => {
   });
 });
 
+// Copy email fallback (mailto: only works if the visitor has a default mail app set up)
+const copyEmailBtn = document.querySelector(".copy-email-btn");
+const copyConfirm = document.getElementById("copy-confirm");
+copyEmailBtn?.addEventListener("click", async () => {
+  const email = copyEmailBtn.dataset.email;
+  try {
+    await navigator.clipboard.writeText(email);
+    copyConfirm.textContent = "Copied to clipboard — paste it into an email to reach me.";
+  } catch (err) {
+    copyConfirm.textContent = email;
+  }
+  setTimeout(() => {
+    copyConfirm.textContent = "";
+  }, 4000);
+});
+
 // Lightbox
 const lightbox = document.getElementById("lightbox");
 const lightboxContent = document.getElementById("lightbox-content");
@@ -79,7 +95,7 @@ async function loadGallery(section, containerId) {
 
       const media =
         item.type === "video"
-          ? `<video src="${item.url}" muted playsinline preload="metadata"></video>`
+          ? `<video src="${item.url}" ${item.posterURL ? `poster="${item.posterURL}"` : ""} muted playsinline preload="metadata"></video>`
           : `<img src="${item.url}" alt="${item.caption || ""}" loading="lazy" />`;
 
       card.innerHTML = `${media}<div class="caption">${item.caption || ""}</div>`;
