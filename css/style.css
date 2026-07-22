@@ -16,6 +16,7 @@
 
 * {
   box-sizing: border-box;
+  cursor: inherit;
 }
 
 html {
@@ -28,6 +29,13 @@ body {
   color: var(--text);
   font-family: "Poppins", sans-serif;
   line-height: 1.65;
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMicgaGVpZ2h0PSczMicgdmlld0JveD0nMCAwIDMyIDMyJz4KPHRleHQgeD0nMicgeT0nMjYnIGZvbnQtc2l6ZT0nMjgnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJyBmaWxsPScjZmY3YTFhJyBzdHJva2U9JyMwZTBlMTAnIHN0cm9rZS13aWR0aD0nMC43Jz4mIzk4MzQ7PC90ZXh0Pgo8L3N2Zz4K") 6 28, auto;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  cursor: text;
 }
 
 /* Decorative music-note background, shared across every page */
@@ -157,7 +165,7 @@ nav a[aria-current="page"] {
   font-weight: 600;
   font-size: 0.95rem;
   text-decoration: none;
-  cursor: pointer;
+  cursor: inherit;
   border: 1.5px solid transparent;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
@@ -372,7 +380,7 @@ section h2 {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  cursor: pointer;
+  cursor: inherit;
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -459,7 +467,7 @@ section h2 {
   right: 2rem;
   font-size: 2rem;
   color: var(--orange);
-  cursor: pointer;
+  cursor: inherit;
   background: none;
   border: none;
 }
@@ -572,7 +580,7 @@ select:focus {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
-  cursor: pointer;
+  cursor: inherit;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 
