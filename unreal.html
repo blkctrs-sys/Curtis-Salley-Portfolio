@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unreal Engine — Curtis Salley</title>
+<meta name="description" content="Unreal Engine work by Curtis Salley." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="work">
+
+<header>
+  <a class="site-name" href="index.html">Curtis <span>Salley</span></a>
+  <nav>
+    <a href="index.html" data-nav="home">Home</a>
+    <a href="work.html" data-nav="work">Work</a>
+    <a href="contact.html" data-nav="contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <a class="back-link" href="work.html">&larr; Back to Work</a>
+  <p class="eyebrow">Unreal Engine</p>
+  <h1>Unreal Engine</h1>
+  <p class="section-intro" id="section-description">Description coming soon.</p>
+
+  <div id="unreal-gallery" class="gallery">
+    <p class="empty-state">No Unreal Engine work uploaded yet — check back soon.</p>
+  </div>
+</main>
+
+<div id="lightbox">
+  <button class="close-btn" aria-label="Close">&times;</button>
+  <div id="lightbox-content"></div>
+</div>
+
+<footer>
+  &copy; <span id="year"></span> Curtis Salley &middot; <a href="admin.html">Admin</a>
+</footer>
+
+<script type="module" src="js/common.js"></script>
+<script type="module">
+  import { initSectionPage } from "./js/section.js";
+  initSectionPage("unreal");
+</script>
+</body>
+</html>

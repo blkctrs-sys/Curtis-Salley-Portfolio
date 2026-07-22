@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow" />
 <title>Admin — Curtis Salley Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 <style>
   main { max-width: 640px; margin: 3rem auto; padding: 0 1.5rem; }
@@ -83,18 +83,30 @@
     </div>
 
     <div class="panel">
-      <h2>Unreal Engine items</h2>
-      <div id="unreal-list"></div>
+      <h2>Unreal Engine page</h2>
+      <label for="unreal-description">Description (shown at the top of the Unreal Engine page)</label>
+      <textarea id="unreal-description" rows="3" style="width:100%;padding:0.6rem 0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:'Poppins',sans-serif;"></textarea>
+      <button class="action" id="save-unreal-description-btn">Save Description</button>
+      <div class="status" id="unreal-description-status"></div>
+      <div id="unreal-list" style="margin-top:1.5rem;"></div>
     </div>
 
     <div class="panel">
-      <h2>Blender items</h2>
-      <div id="blender-list"></div>
+      <h2>Blender page</h2>
+      <label for="blender-description">Description (shown at the top of the Blender page)</label>
+      <textarea id="blender-description" rows="3" style="width:100%;padding:0.6rem 0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:'Poppins',sans-serif;"></textarea>
+      <button class="action" id="save-blender-description-btn">Save Description</button>
+      <div class="status" id="blender-description-status"></div>
+      <div id="blender-list" style="margin-top:1.5rem;"></div>
     </div>
 
     <div class="panel">
-      <h2>Music items</h2>
-      <div id="music-list"></div>
+      <h2>Music page</h2>
+      <label for="music-description">Description (shown at the top of the Music page)</label>
+      <textarea id="music-description" rows="3" style="width:100%;padding:0.6rem 0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:'Poppins',sans-serif;"></textarea>
+      <button class="action" id="save-music-description-btn">Save Description</button>
+      <div class="status" id="music-description-status"></div>
+      <div id="music-list" style="margin-top:1.5rem;"></div>
     </div>
 
     <div class="panel">

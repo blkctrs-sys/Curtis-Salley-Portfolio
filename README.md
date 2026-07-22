@@ -64,7 +64,20 @@ Click **Publish** on each.
 3. In the same file, set `ADMIN_UID` to the UID from step 2.4 (same value you pasted into the
    rules above).
 
-### 6. Put the site online for free with GitHub Pages
+### 6. Set up the contact form (EmailJS)
+The Contact page (`contact.html`) sends messages using [EmailJS](https://www.emailjs.com), a free
+service that lets a static page send email without a server.
+1. Sign up at https://www.emailjs.com (free plan, 200 emails/month).
+2. **Email Services** → add a service (e.g. connect your Gmail) → note its **Service ID**.
+3. **Email Templates** → create a template that uses the variables `{{name}}`, `{{email}}`, and
+   `{{message}}` → note its **Template ID**.
+4. **Account → General** → copy your **Public Key**.
+5. Paste all three values into `js/emailjs-config.js` in this project, replacing the placeholders.
+
+Until this is filled in, the form shows a friendly "not set up yet" message and visitors can still
+reach you via the mailto link/copy-email button underneath it.
+
+### 7. Put the site online for free with GitHub Pages
 1. Create a free GitHub account if you don't have one (https://github.com).
 2. Create a new **public** repository.
 3. Push this folder to that repository.
@@ -75,7 +88,8 @@ Click **Publish** on each.
 ## Using it day to day
 - Go to `https://yourusername.github.io/your-repo-name/admin.html`, log in with the email/password
   from step 2.3.
-- Update your bio/photo, or upload images/videos to the Unreal Engine or Blender sections.
+- Update your bio/photo, the description shown at the top of each work page, or upload images/videos
+  to the Unreal Engine, Blender, or Music sections.
 - Changes show up on the main site immediately — no redeploy needed, since the content lives in
   Firebase, not in the HTML files.
 - The "Admin" link in the public site's footer just points here for your convenience; it isn't

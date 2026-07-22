@@ -50,6 +50,9 @@ onAuthStateChanged(auth, (user) => {
     appPanels.style.display = "block";
     loginStatus.textContent = "";
     loadAboutIntoForm();
+    loadSectionDescriptionIntoForm("unreal");
+    loadSectionDescriptionIntoForm("blender");
+    loadSectionDescriptionIntoForm("music");
     refreshList("unreal", "unreal-list");
     refreshList("blender", "blender-list");
     refreshList("music", "music-list");
@@ -92,6 +95,29 @@ document.getElementById("save-about-btn").addEventListener("click", async () => 
   } catch (err) {
     status.textContent = "Error: " + err.message;
   }
+});
+
+// --- Section (Unreal/Blender/Music) page descriptions ---
+
+async function loadSectionDescriptionIntoForm(section) {
+  const snap = await getDoc(doc(db, "site", section));
+  if (snap.exists()) {
+    document.getElementById(`${section}-description`).value = snap.data().description || "";
+  }
+}
+
+["unreal", "blender", "music"].forEach((section) => {
+  document.getElementById(`save-${section}-description-btn`).addEventListener("click", async () => {
+    const status = document.getElementById(`${section}-description-status`);
+    status.textContent = "Saving...";
+    try {
+      const description = document.getElementById(`${section}-description`).value.trim();
+      await setDoc(doc(db, "site", section), { description }, { merge: true });
+      status.textContent = "Saved.";
+    } catch (err) {
+      status.textContent = "Error: " + err.message;
+    }
+  });
 });
 
 // --- Gallery uploads ---

@@ -3,24 +3,32 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Curtis Salley — Unreal Engine & Blender Portfolio</title>
+<title>Curtis Salley — Unreal Engine & Blender Artist</title>
 <meta name="description" content="Portfolio of Curtis Salley's Unreal Engine and Blender work." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-page="home">
 
 <header>
-  <h1 class="site-name">Curtis <span>Salley</span></h1>
+  <a class="site-name" href="index.html">Curtis <span>Salley</span></a>
   <nav>
-    <button data-target="#about">About Me</button>
-    <button data-target="#unreal">Unreal Engine</button>
-    <button data-target="#blender">Blender</button>
-    <button data-target="#music">Music</button>
-    <button data-target="#contact">Contact</button>
+    <a href="index.html" data-nav="home">Home</a>
+    <a href="work.html" data-nav="work">Work</a>
+    <a href="contact.html" data-nav="contact">Contact</a>
   </nav>
 </header>
+
+<div class="hero">
+  <p class="eyebrow">Unreal Engine &amp; Blender</p>
+  <h1>Curtis <span>Salley</span></h1>
+  <p class="tagline">I build 3D environments, real-time experiences, and visuals for teams who need work that looks and performs like it belongs on a real production.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="work.html">View my work</a>
+    <a class="btn btn-secondary" href="contact.html">Get in touch</a>
+  </div>
+</div>
 
 <section id="about">
   <h2>About Me</h2>
@@ -32,46 +40,11 @@
   </div>
 </section>
 
-<section id="unreal">
-  <h2>Unreal Engine</h2>
-  <div id="unreal-gallery" class="gallery">
-    <p class="empty-state">No Unreal Engine work uploaded yet — check back soon.</p>
-  </div>
-</section>
-
-<section id="blender">
-  <h2>Blender</h2>
-  <div id="blender-gallery" class="gallery">
-    <p class="empty-state">No Blender work uploaded yet — check back soon.</p>
-  </div>
-</section>
-
-<section id="music">
-  <h2>Music</h2>
-  <div id="music-gallery" class="gallery gallery--portrait">
-    <p class="empty-state">No music uploaded yet — check back soon.</p>
-  </div>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p class="contact-text">Have a project in mind or just want to get in touch? Send me an email and I'll get back to you.</p>
-  <div class="contact-actions">
-    <a class="contact-email" href="mailto:blkctrs@gmail.com">blkctrs@gmail.com</a>
-    <button type="button" class="copy-email-btn" data-email="blkctrs@gmail.com">Copy email</button>
-  </div>
-  <p class="copy-confirm" id="copy-confirm" aria-live="polite"></p>
-</section>
-
-<div id="lightbox">
-  <button class="close-btn" aria-label="Close">&times;</button>
-  <div id="lightbox-content"></div>
-</div>
-
 <footer>
   &copy; <span id="year"></span> Curtis Salley &middot; <a href="admin.html">Admin</a>
 </footer>
 
-<script type="module" src="js/main.js"></script>
+<script type="module" src="js/common.js"></script>
+<script type="module" src="js/home.js"></script>
 </body>
 </html>

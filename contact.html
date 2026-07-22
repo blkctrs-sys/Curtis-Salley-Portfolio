@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Curtis Salley</title>
+<meta name="description" content="Get in touch with Curtis Salley." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="contact">
+
+<header>
+  <a class="site-name" href="index.html">Curtis <span>Salley</span></a>
+  <nav>
+    <a href="index.html" data-nav="home">Home</a>
+    <a href="work.html" data-nav="work">Work</a>
+    <a href="contact.html" data-nav="contact">Contact</a>
+  </nav>
+</header>
+
+<main style="text-align:center;">
+  <p class="eyebrow">Contact</p>
+  <h1>Let's talk</h1>
+  <p class="section-intro" style="margin-left:auto;margin-right:auto;text-align:center;">Have a project in mind or just want to get in touch? Send a message below and I'll get back to you.</p>
+
+  <form class="contact-form" id="contact-form">
+    <div class="field">
+      <label for="contact-name">Name</label>
+      <input type="text" id="contact-name" name="name" required />
+    </div>
+    <div class="field">
+      <label for="contact-email">Your email</label>
+      <input type="email" id="contact-email" name="email" required />
+    </div>
+    <div class="field">
+      <label for="contact-message">Message</label>
+      <textarea id="contact-message" name="message" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" id="contact-submit">Send message</button>
+    <p class="status-msg" id="contact-status" aria-live="polite"></p>
+  </form>
+
+  <div class="contact-fallback">
+    <p>Prefer email directly?</p>
+    <div class="contact-actions">
+      <a class="contact-email" href="mailto:blkctrs@gmail.com">blkctrs@gmail.com</a>
+      <button type="button" class="copy-email-btn" data-email="blkctrs@gmail.com">Copy email</button>
+    </div>
+    <p class="status-msg" id="copy-confirm" aria-live="polite"></p>
+  </div>
+</main>
+
+<footer>
+  &copy; <span id="year"></span> Curtis Salley &middot; <a href="admin.html">Admin</a>
+</footer>
+
+<script type="module" src="js/common.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="module" src="js/contact.js"></script>
+</body>
+</html>
