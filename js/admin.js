@@ -12,6 +12,7 @@ import {
   collection,
   addDoc,
   deleteDoc,
+  updateDoc,
   query,
   where,
   orderBy,
@@ -222,6 +223,65 @@ async function refreshList(section, listId) {
     }
     row.appendChild(info);
 
+    const actions = document.createElement("div");
+    actions.className = "item-row-actions";
+
+    const editForm = document.createElement("div");
+    editForm.className = "item-edit-form";
+    editForm.innerHTML = `
+      <label>Caption</label>
+      <input type="text" class="edit-caption" />
+      <label>Description</label>
+      <textarea class="edit-description" rows="3"></textarea>
+      <div class="edit-actions">
+        <button type="button" class="save-btn">Save</button>
+        <button type="button" class="cancel-btn">Cancel</button>
+      </div>
+      <div class="status edit-status"></div>
+    `;
+    const captionInput = editForm.querySelector(".edit-caption");
+    const descriptionInput = editForm.querySelector(".edit-description");
+    captionInput.value = item.caption || "";
+    descriptionInput.value = item.description || "";
+
+    const editBtn = document.createElement("button");
+    editBtn.className = "edit";
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener("click", () => {
+      const isOpen = editForm.style.display === "block";
+      editForm.style.display = isOpen ? "none" : "block";
+      if (!isOpen) {
+        captionInput.value = item.caption || "";
+        descriptionInput.value = item.description || "";
+      }
+    });
+
+    editForm.querySelector(".cancel-btn").addEventListener("click", () => {
+      editForm.style.display = "none";
+    });
+
+    editForm.querySelector(".save-btn").addEventListener("click", async () => {
+      const editStatus = editForm.querySelector(".edit-status");
+      const caption = captionInput.value.trim();
+      const description = descriptionInput.value.trim();
+      editStatus.textContent = "Saving...";
+      try {
+        await updateDoc(doc(db, "gallery", docSnap.id), { caption, description });
+        item.caption = caption;
+        item.description = description;
+        const descLine = description
+          ? `<br><small style="color:var(--text-dim);">${description}</small>`
+          : "";
+        info.innerHTML = `${thumb}<span>${caption || "(no caption)"} — ${item.type}<br><small style="color:var(--text-dim);">${when}</small>${descLine}</span>`;
+        if (item.type === "video") {
+          primeVideoThumbnail(info.querySelector("video"));
+        }
+        editForm.style.display = "none";
+      } catch (err) {
+        editStatus.textContent = "Error: " + err.message;
+      }
+    });
+
     const delBtn = document.createElement("button");
     delBtn.className = "danger";
     delBtn.textContent = "Delete";
@@ -238,7 +298,10 @@ async function refreshList(section, listId) {
       }
     });
 
-    row.appendChild(delBtn);
+    actions.appendChild(editBtn);
+    actions.appendChild(delBtn);
+    row.appendChild(actions);
     listEl.appendChild(row);
+    listEl.appendChild(editForm);
   });
 }
