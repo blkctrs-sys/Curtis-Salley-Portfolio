@@ -189,7 +189,7 @@ main, section {
   margin: 0 auto;
 }
 
-.page section,
+section,
 main {
   border-bottom: 1px solid var(--border);
 }
@@ -248,10 +248,14 @@ section h2 {
 }
 
 .hero .tagline {
+  display: inline-block;
   color: var(--text-dim);
   font-size: 1.1rem;
   max-width: 600px;
-  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.75rem;
 }
 
 .hero-cta {
@@ -263,6 +267,12 @@ section h2 {
 }
 
 /* About */
+#about {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
