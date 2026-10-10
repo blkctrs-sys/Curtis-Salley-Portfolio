@@ -64,18 +64,11 @@ Click **Publish** on each.
 3. In the same file, set `ADMIN_UID` to the UID from step 2.4 (same value you pasted into the
    rules above).
 
-### 6. Set up the contact form (EmailJS)
-The Contact page (`contact.html`) sends messages using [EmailJS](https://www.emailjs.com), a free
-service that lets a static page send email without a server.
-1. Sign up at https://www.emailjs.com (free plan, 200 emails/month).
-2. **Email Services** → add a service (e.g. connect your Gmail) → note its **Service ID**.
-3. **Email Templates** → create a template that uses the variables `{{name}}`, `{{email}}`, and
-   `{{message}}` → note its **Template ID**.
-4. **Account → General** → copy your **Public Key**.
-5. Paste all three values into `js/emailjs-config.js` in this project, replacing the placeholders.
-
-Until this is filled in, the form shows a friendly "not set up yet" message and visitors can still
-reach you via the mailto link/copy-email button underneath it.
+### 6. Contact form
+The Contact page sends messages through [FormSubmit](https://formsubmit.co), which is free and needs no
+account. The first message sent from the live site triggers an **Activate** email to blkctrs@gmail.com.
+Click it once and every message after that arrives in that inbox. To change the address, edit
+`CONTACT_EMAIL` in `js/contact.js`.
 
 ### 7. Put the site online for free with GitHub Pages
 1. Create a free GitHub account if you don't have one (https://github.com).
