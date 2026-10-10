@@ -1,13 +1,5 @@
 import { db } from "./firebase-init.js";
-import {
-  doc,
-  getDoc,
-  collection,
-  query,
-  where,
-  orderBy,
-  getDocs,
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { primeVideoThumbnail } from "./video-thumb.js";
 
 function setupLightbox() {
@@ -48,41 +40,42 @@ async function loadSectionDescription(section) {
   }
 }
 
+// Gallery items are listed in media/gallery.json, and the files live in media/, served free by
+// GitHub Pages. (They used to be in Firebase Storage, which now needs a paid billing account.)
+const esc = (v) =>
+  String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
 async function loadGallery(section, containerId, openLightbox) {
   const container = document.getElementById(containerId);
   try {
-    const q = query(
-      collection(db, "gallery"),
-      where("section", "==", section),
-      orderBy("createdAt", "desc")
-    );
-    const snap = await getDocs(q);
-    if (snap.empty) return; // leave the existing empty-state message in place
+    const res = await fetch("media/gallery.json?v=" + Date.now());
+    if (!res.ok) throw new Error(`gallery.json returned ${res.status}`);
+    const items = (await res.json()).items.filter((item) => item.section === section);
+    if (!items.length) return; // leave the existing empty-state message in place
 
     container.innerHTML = "";
-    snap.forEach((docSnap) => {
-      const item = docSnap.data();
+    for (const item of items) {
       const card = document.createElement("div");
       card.className = "gallery-item";
 
       const media =
         item.type === "video"
-          ? `<video src="${item.url}" ${item.posterURL ? `poster="${item.posterURL}"` : ""} muted playsinline preload="metadata"></video>`
-          : `<img src="${item.url}" alt="${item.caption || ""}" loading="lazy" />`;
+          ? `<video src="${esc(item.src)}" ${item.poster ? `poster="${esc(item.poster)}"` : ""} muted playsinline preload="none"></video>`
+          : `<img src="${esc(item.src)}" alt="${esc(item.caption)}" loading="lazy" />`;
 
-      card.innerHTML = `${media}<div class="caption">${item.caption || ""}</div>`;
+      card.innerHTML = `${media}<div class="caption">${esc(item.caption)}</div>`;
       if (item.description) {
         card.title = item.description;
       }
-      if (item.type === "video") {
+      if (item.type === "video" && !item.poster) {
         primeVideoThumbnail(card.querySelector("video"));
       }
-      card.addEventListener("click", () => openLightbox(item.type, item.url, item.description));
+      card.addEventListener("click", () => openLightbox(item.type, item.src, esc(item.description)));
       container.appendChild(card);
-    });
+    }
   } catch (err) {
     console.error(`Failed to load ${section} gallery:`, err);
-    container.innerHTML = `<p class="empty-state" style="color:#ff5c5c;">Couldn't load this gallery: ${err.message}</p>`;
+    container.innerHTML = `<p class="empty-state" style="color:#ff5c5c;">Couldn't load this gallery right now.</p>`;
   }
 }
 

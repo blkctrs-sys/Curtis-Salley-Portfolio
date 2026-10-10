@@ -9,14 +9,24 @@ async function loadAbout() {
     if (data.bioText) {
       document.getElementById("about-bio").textContent = data.bioText;
     }
-    if (data.photoURL) {
-      const img = document.getElementById("about-photo");
-      img.src = data.photoURL;
-      img.style.display = "block";
-    }
   } catch (err) {
     console.error("Failed to load About Me content:", err);
   }
 }
 
+// The profile photo is served from the repo (listed in media/gallery.json).
+async function loadPhoto() {
+  try {
+    const res = await fetch("media/gallery.json?v=" + Date.now());
+    const photo = (await res.json()).about?.photo;
+    if (!photo) return;
+    const img = document.getElementById("about-photo");
+    img.src = photo;
+    img.style.display = "block";
+  } catch (err) {
+    console.error("Failed to load the profile photo:", err);
+  }
+}
+
 loadAbout();
+loadPhoto();

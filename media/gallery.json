@@ -1,0 +1,141 @@
+{
+  "about": {
+    "photo": "media/about/photo.jpg"
+  },
+  "items": [
+    {
+      "section": "unreal",
+      "type": "video",
+      "src": "media/unreal/clip-2.mp4",
+      "caption": "",
+      "description": "",
+      "added": "2026-07-23",
+      "poster": "media/unreal/clip-2.jpg"
+    },
+    {
+      "section": "unreal",
+      "type": "video",
+      "src": "media/unreal/clip-1.mp4",
+      "caption": "",
+      "description": "",
+      "added": "2026-07-23",
+      "poster": "media/unreal/clip-1.jpg"
+    },
+    {
+      "section": "blender",
+      "type": "video",
+      "src": "media/blender/blkcitrus-logo.mp4",
+      "caption": "blkcitrus logo",
+      "description": "",
+      "added": "2026-07-22",
+      "poster": "media/blender/blkcitrus-logo.jpg"
+    },
+    {
+      "section": "blender",
+      "type": "video",
+      "src": "media/blender/low-poly-car.mp4",
+      "caption": "Low Poly Car",
+      "description": "",
+      "added": "2026-07-22",
+      "poster": "media/blender/low-poly-car.jpg"
+    },
+    {
+      "section": "music",
+      "type": "video",
+      "src": "media/music/beat-7-20.mp4",
+      "caption": "",
+      "description": "",
+      "added": "2026-07-22",
+      "poster": "media/music/beat-7-20.jpg"
+    },
+    {
+      "section": "music",
+      "type": "video",
+      "src": "media/music/some-way.mp4",
+      "caption": "",
+      "description": "",
+      "added": "2026-07-22",
+      "poster": "media/music/some-way.jpg"
+    },
+    {
+      "section": "music",
+      "type": "video",
+      "src": "media/music/half-step.mp4",
+      "caption": "",
+      "description": "",
+      "added": "2026-07-22",
+      "poster": "media/music/half-step.jpg"
+    },
+    {
+      "section": "music",
+      "type": "video",
+      "src": "media/music/beat-7-19.mp4",
+      "caption": "",
+      "description": "",
+      "added": "2026-07-22",
+      "poster": "media/music/beat-7-19.jpg"
+    },
+    {
+      "section": "blender",
+      "type": "image",
+      "src": "media/blender/toasty-jams-logo.png",
+      "caption": "Toasty Jams Logo",
+      "description": "",
+      "added": "2026-07-22"
+    },
+    {
+      "section": "blender",
+      "type": "video",
+      "src": "media/blender/diamond-park.mp4",
+      "caption": "Diamond Park",
+      "description": "",
+      "added": "2026-07-22",
+      "poster": "media/blender/diamond-park.jpg"
+    },
+    {
+      "section": "blender",
+      "type": "video",
+      "src": "media/blender/the-loft.mp4",
+      "caption": "The Loft",
+      "description": "",
+      "added": "2026-07-22",
+      "poster": "media/blender/the-loft.jpg"
+    },
+    {
+      "section": "blender",
+      "type": "video",
+      "src": "media/blender/classic-donut.mp4",
+      "caption": "The Classic Donut",
+      "description": "The classic donut from blender guru",
+      "added": "2026-07-22",
+      "poster": "media/blender/classic-donut.jpg"
+    },
+    {
+      "section": "music",
+      "type": "video",
+      "src": "media/music/killin-it.mp4",
+      "caption": "",
+      "description": "",
+      "added": "2026-07-21",
+      "poster": "media/music/killin-it.jpg"
+    },
+    {
+      "section": "blender",
+      "type": "video",
+      "src": "media/blender/earthlight-gallery.mp4",
+      "caption": "Earthlight Gallery",
+      "description": "",
+      "added": "2026-06-23",
+      "poster": "media/blender/earthlight-gallery.jpg"
+    },
+    {
+      "section": "blender",
+      "type": "video",
+      "src": "media/blender/cookies-coffee.mp4",
+      "caption": "Cookies & Coffee",
+      "description": "",
+      "added": "2026-06-23",
+      "poster": "media/blender/cookies-coffee.jpg"
+    }
+  ]
+}

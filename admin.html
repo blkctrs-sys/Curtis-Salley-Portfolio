@@ -7,7 +7,7 @@
 <title>Admin — Curtis Salley Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=7" />
+<link rel="stylesheet" href="css/style.css?v=8" />
 <style>
   main { max-width: 640px; margin: 3rem auto; padding: 0 1.5rem; }
   .panel { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 1.75rem; margin-bottom: 2rem; }
@@ -58,14 +58,29 @@
       <h2>About Me</h2>
       <label for="bio-text">Bio text</label>
       <textarea id="bio-text" rows="6" style="width:100%;padding:0.6rem 0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:'Poppins',sans-serif;"></textarea>
-      <label for="bio-photo">Profile photo (replaces current)</label>
-      <input type="file" id="bio-photo" accept="image/*" />
+      <!-- Photo uploads went to Firebase Storage, which now needs billing. The photo now lives at
+           media/about/photo.jpg in the repo. Replace that file to change it. -->
+      <input type="file" id="bio-photo" accept="image/*" hidden />
+      <p class="status">Profile photo: replace <code>media/about/photo.jpg</code> in the site's GitHub repo (or ask Claude to do it).</p>
       <button class="action" id="save-about-btn">Save About Me</button>
       <div class="status" id="about-status"></div>
     </div>
 
     <div class="panel">
       <h2>Add Work</h2>
+      <p>Images and videos are now hosted for free with the site on GitHub, not Firebase Storage
+        (which now requires a paid billing account). To add a piece:</p>
+      <ol>
+        <li>Put the file in <code>E:\AI work\portfolio-media\inbox\</code> on your PC.</li>
+        <li>Ask Claude to "add it to the portfolio" with the section, caption, and description, or run
+          <code>node tools/add-media.js</code> from the portfolio folder.</li>
+      </ol>
+      <p>It gets compressed, a thumbnail is made, and it shows up on the site within a couple of minutes.
+        To remove or re-caption a piece, edit <code>media/gallery.json</code>.</p>
+    </div>
+
+    <div class="panel" hidden>
+      <h2>Add Work (old Firebase upload, disabled)</h2>
       <label for="media-section">Section</label>
       <select id="media-section">
         <option value="unreal">Unreal Engine</option>
@@ -88,7 +103,7 @@
       <textarea id="unreal-description" rows="3" style="width:100%;padding:0.6rem 0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:'Poppins',sans-serif;"></textarea>
       <button class="action" id="save-unreal-description-btn">Save Description</button>
       <div class="status" id="unreal-description-status"></div>
-      <div id="unreal-list" style="margin-top:1.5rem;"></div>
+      <div id="unreal-list" style="margin-top:1.5rem;" hidden></div>
     </div>
 
     <div class="panel">
@@ -97,7 +112,7 @@
       <textarea id="blender-description" rows="3" style="width:100%;padding:0.6rem 0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:'Poppins',sans-serif;"></textarea>
       <button class="action" id="save-blender-description-btn">Save Description</button>
       <div class="status" id="blender-description-status"></div>
-      <div id="blender-list" style="margin-top:1.5rem;"></div>
+      <div id="blender-list" style="margin-top:1.5rem;" hidden></div>
     </div>
 
     <div class="panel">
@@ -106,7 +121,7 @@
       <textarea id="music-description" rows="3" style="width:100%;padding:0.6rem 0.75rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:'Poppins',sans-serif;"></textarea>
       <button class="action" id="save-music-description-btn">Save Description</button>
       <div class="status" id="music-description-status"></div>
-      <div id="music-list" style="margin-top:1.5rem;"></div>
+      <div id="music-list" style="margin-top:1.5rem;" hidden></div>
     </div>
 
     <div class="panel">
